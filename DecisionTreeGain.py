@@ -25,7 +25,7 @@ class MyDecisionTreeRegressorGain():
         self,
         max_depth: int = None,
         min_samples_leaf: int = 2,
-        criterion: str = 'mse',
+        criterion: str = 'squared_error',
         lmd: float = 1.0,
         gamma: float = 0.1, 
         ) -> None:
@@ -44,7 +44,7 @@ class MyDecisionTreeRegressorGain():
 
     def __get_optimal_value(self, data: List[float]) -> float:
 
-        if self.criterion == 'mse':
+        if self.criterion == 'squared_error':
             return np.mean(data)
 
         elif self.criterion == 'mae':
@@ -57,7 +57,7 @@ class MyDecisionTreeRegressorGain():
 
     def __get_error(self, y_true: List[float], y_pred: List[float]) -> float:
         
-        if self.criterion == 'mse':
+        if self.criterion == 'squared_error':
             return mse(y_true, y_pred)
 
         elif self.criterion == 'mae':
@@ -70,7 +70,7 @@ class MyDecisionTreeRegressorGain():
 
     def __get_error_first_der(self, y_true: List[float], y_pred: List[float]) -> float:
 
-        if self.criterion == 'mse':
+        if self.criterion == 'squared_error':
             return y_pred - y_true
 
         elif self.criterion == 'mae':
